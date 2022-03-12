@@ -23,7 +23,7 @@ public class NamedDatasetService {
         log.info("Starting to load {}", datasetImportSettings);
         Dataset<Row> dataset = sparkSession
                 .read()
-                .orc("data\\covid19-orc");
+                .json("data\\sample.json");
 
         final String temporaryViewName = "covid"; //datasetImportSettings.getRequestedName();
         dataset.createTempView(temporaryViewName);

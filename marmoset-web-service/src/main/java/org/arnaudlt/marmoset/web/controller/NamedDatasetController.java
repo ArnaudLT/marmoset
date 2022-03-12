@@ -1,7 +1,5 @@
 package org.arnaudlt.marmoset.web.controller;
 
-import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.arnaudlt.marmoset.core.NamedDatasetService;
@@ -9,15 +7,16 @@ import org.arnaudlt.marmoset.core.model.MDataset;
 import org.arnaudlt.marmoset.core.model.SqlQueryOutput;
 import org.arnaudlt.marmoset.web.api.*;
 import org.arnaudlt.marmoset.web.utils.Converters;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 
 @Slf4j
 @AllArgsConstructor
-@RestController(value = "/api/v1/datasets")
+@RestController
+@RequestMapping(value = "/api/v1/datasets", produces = MediaType.APPLICATION_NDJSON_VALUE)
 public class NamedDatasetController {
 
     private NamedDatasetService namedDatasetService;
@@ -31,7 +30,7 @@ public class NamedDatasetController {
         return Mono.just(Converters.toDataTransferObject(dataset));
     }
 
-    @PostMapping(value = "unload")
+    @DeleteMapping(value = "unload")
     public Mono<Void> unload(@RequestBody DatasetNameDto datasetNameDto) {
 
         log.info("Request to unload dataset {}", datasetNameDto);
@@ -45,5 +44,12 @@ public class NamedDatasetController {
         log.info("Request to run query {}", sqlQueryDto);
         SqlQueryOutput output = namedDatasetService.runQuery(Converters.toBusinessObject(sqlQueryDto));
         return Mono.just(Converters.toDataTransferObject(output));
+    }
+
+    @GetMapping(value = "catalog")
+    public Flux<MDatasetDto> catalog() {
+
+        log.info("Request catalog");
+        return Flux.empty();
     }
 }

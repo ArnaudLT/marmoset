@@ -1,6 +1,8 @@
 package org.arnaudlt.marmoset.web.api;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
