@@ -7,7 +7,7 @@ import com.tngtech.archunit.lang.syntax.ArchRuleDefinition;
 
 
 @AnalyzeClasses(packages = "org.arnaudlt.marmoset", importOptions = {ImportOption.DoNotIncludeTests.class})
-class HexagonalArchitectureTest {
+class CoreModuleArcTest {
 
     @ArchTest
     static final ArchRule business_is_isolated =

@@ -11,6 +11,6 @@ import java.util.Map;
 @NoArgsConstructor
 public class SchemaDto {
 
-    private Map<String, FieldDto> schema;
+    private Map<String, FieldDto> fields;
 
 }
