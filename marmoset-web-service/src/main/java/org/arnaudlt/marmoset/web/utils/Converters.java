@@ -7,6 +7,7 @@ import org.arnaudlt.marmoset.core.model.*;
 import org.arnaudlt.marmoset.web.api.*;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @UtilityClass
 public class Converters {
@@ -24,7 +25,7 @@ public class Converters {
 
         return new MDatasetDto(
                 new DatasetNameDto(dataset.getDatasetName().getName()),
-                new SchemaDto(schemaToFieldsMap(dataset.getDataset().schema())));
+                new SchemaDto(schemaToFields(dataset.getDataset().schema())));
     }
 
     public static SqlQuery toBusinessObject(SqlQueryDto sqlQueryDto) {
@@ -55,7 +56,7 @@ public class Converters {
         List<Map<String, String>> convertedRows = new ArrayList<>();
         for (Row row : rows) {
 
-            Map<String, String> convertedRow = new TreeMap<>();
+            Map<String, String> convertedRow = new LinkedHashMap<>();
             for (StructField field : fields) {
 
                 convertedRow.put(field.name(), row.getAs(field.name()));
@@ -65,16 +66,25 @@ public class Converters {
         return new OutputRowsDto(convertedRows);
     }
 
-    private static Map<String, FieldDto> schemaToFieldsMap(StructType schema) {
+    public static CatalogDto toDataTransferObject(Catalog catalog) {
 
-        Map<String, FieldDto> schemaDto = new TreeMap<>();
+        List<DatasetNameDto> datasetNames = catalog.getDatasetNames()
+                .stream()
+                .map(datasetName -> new DatasetNameDto(datasetName.getName()))
+                .collect(Collectors.toList());
+        return new CatalogDto(datasetNames);
+    }
+
+    private static Set<FieldDto> schemaToFields(StructType schema) {
+
+        Set<FieldDto> schemaDto = new LinkedHashSet<>();
         for (StructField structField : schema.fields()) {
 
-            TreeMap<String, FieldDto> innerFields = new TreeMap<>();
+            Set<FieldDto> innerFields = new LinkedHashSet<>();
             FieldDto fieldDto = new FieldDto(structField.name(), structField.dataType().typeName(), innerFields);
             addInnerFields(fieldDto, structField.dataType());
 
-            schemaDto.put(fieldDto.getName(), fieldDto);
+            schemaDto.add(fieldDto);
         }
         return schemaDto;
     }
@@ -89,10 +99,10 @@ public class Converters {
                 while (structFieldsIterator.hasNext()) {
 
                     StructField field = structFieldsIterator.next();
-                    TreeMap<String, FieldDto> innerFields = new TreeMap<>();
+                    Set<FieldDto> innerFields = new LinkedHashSet<>();
                     FieldDto fieldDto = new FieldDto(field.name(), field.dataType().typeName(), innerFields);
                     addInnerFields(fieldDto, field.dataType());
-                    parentFieldDto.getInnerFields().put(fieldDto.getName(), fieldDto);
+                    parentFieldDto.getInnerFields().add(fieldDto);
                 }
                 break;
             case "map":
@@ -108,6 +118,5 @@ public class Converters {
             default:
         }
     }
-
 
 }

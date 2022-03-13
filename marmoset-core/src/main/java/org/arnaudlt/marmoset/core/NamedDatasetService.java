@@ -9,6 +9,9 @@ import org.apache.spark.sql.SparkSession;
 import org.arnaudlt.marmoset.core.model.*;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Slf4j
 @AllArgsConstructor
 @Component
@@ -25,7 +28,7 @@ public class NamedDatasetService {
                 .read()
                 .json("data\\sample.json");
 
-        final String temporaryViewName = "covid"; //datasetImportSettings.getRequestedName();
+        final String temporaryViewName = datasetImportSettings.getRequestedName();
         dataset.createTempView(temporaryViewName);
 
         return new MDataset(new DatasetName(temporaryViewName), dataset);
@@ -44,6 +47,18 @@ public class NamedDatasetService {
         OutputRows outputRows = new OutputRows(outputDataset.takeAsList(10));
 
         return new SqlQueryOutput(sqlQuery, outputDataset, outputRows);
+    }
+
+    public Catalog catalog() {
+
+        log.info("Starting to retrieve catalog");
+        List<DatasetName> datasetNames = sparkSession.catalog()
+                .listTables() // TODO specify the DB to handle multiple users
+                .collectAsList()
+                .stream()
+                .map(table -> new DatasetName(table.name()))
+                .collect(Collectors.toList());
+        return new Catalog(datasetNames);
     }
 
 }

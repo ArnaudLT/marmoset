@@ -3,13 +3,13 @@ package org.arnaudlt.marmoset.web.controller;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.arnaudlt.marmoset.core.NamedDatasetService;
+import org.arnaudlt.marmoset.core.model.Catalog;
 import org.arnaudlt.marmoset.core.model.MDataset;
 import org.arnaudlt.marmoset.core.model.SqlQueryOutput;
 import org.arnaudlt.marmoset.web.api.*;
 import org.arnaudlt.marmoset.web.utils.Converters;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 
@@ -47,9 +47,10 @@ public class NamedDatasetController {
     }
 
     @GetMapping(value = "catalog")
-    public Flux<MDatasetDto> catalog() {
+    public Mono<CatalogDto> catalog() {
 
         log.info("Request catalog");
-        return Flux.empty();
+        Catalog catalog = namedDatasetService.catalog();
+        return Mono.just(Converters.toDataTransferObject(catalog));
     }
 }
