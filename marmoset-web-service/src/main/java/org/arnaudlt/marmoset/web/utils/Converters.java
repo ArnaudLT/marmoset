@@ -42,8 +42,17 @@ public class Converters {
 
         return new SqlQueryOutputDto(
                 toDataTransferObject(sqlQueryOutput.getSqlQuery()),
-                convert(sqlQueryOutput.getOutputRows().getRows(), sqlQueryOutput.getOutputDataset().schema().fields())
+                toOutputRowsDto(sqlQueryOutput)
         );
+    }
+
+    public static CatalogDto toDataTransferObject(Catalog catalog) {
+
+        List<DatasetNameDto> datasetNames = catalog.getDatasetNames()
+                .stream()
+                .map(datasetName -> new DatasetNameDto(datasetName.getName()))
+                .collect(Collectors.toList());
+        return new CatalogDto(datasetNames);
     }
 
     public static DatasetName toBusinessObject(DatasetNameDto datasetNameDto) {
@@ -51,7 +60,10 @@ public class Converters {
         return new DatasetName(datasetNameDto.getName());
     }
 
-    private static OutputRowsDto convert(List<Row> rows, StructField[] fields) {
+    private static OutputRowsDto toOutputRowsDto(SqlQueryOutput sqlQueryOutput) {
+
+        List<Row> rows = sqlQueryOutput.getOutputRows().getRows();
+        StructField[] fields = sqlQueryOutput.getOutputDataset().schema().fields();
 
         List<Map<String, String>> convertedRows = new ArrayList<>();
         for (Row row : rows) {
@@ -64,15 +76,6 @@ public class Converters {
             convertedRows.add(convertedRow);
         }
         return new OutputRowsDto(convertedRows);
-    }
-
-    public static CatalogDto toDataTransferObject(Catalog catalog) {
-
-        List<DatasetNameDto> datasetNames = catalog.getDatasetNames()
-                .stream()
-                .map(datasetName -> new DatasetNameDto(datasetName.getName()))
-                .collect(Collectors.toList());
-        return new CatalogDto(datasetNames);
     }
 
     private static Set<FieldDto> schemaToFields(StructType schema) {

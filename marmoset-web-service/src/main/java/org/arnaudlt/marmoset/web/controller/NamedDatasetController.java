@@ -22,6 +22,13 @@ public class NamedDatasetController {
     private NamedDatasetService namedDatasetService;
 
 
+    @GetMapping(value = "hello")
+    public Mono<String> hello() {
+
+        log.info("Hello World !");
+        return Mono.just("Hello");
+    }
+
     @PostMapping(value = "load")
     public Mono<MDatasetDto> load(@RequestBody DatasetImportSettingsDto datasetImportSettingsDto) {
 
