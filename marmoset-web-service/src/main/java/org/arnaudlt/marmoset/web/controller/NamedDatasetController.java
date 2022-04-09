@@ -10,23 +10,35 @@ import org.arnaudlt.marmoset.web.api.*;
 import org.arnaudlt.marmoset.web.utils.Converters;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+
+import java.time.Duration;
+import java.util.Collections;
+import java.util.UUID;
+import java.util.stream.Stream;
 
 
 @Slf4j
 @AllArgsConstructor
+@CrossOrigin
 @RestController
-@RequestMapping(value = "/api/v1/datasets", produces = MediaType.APPLICATION_NDJSON_VALUE)
+@RequestMapping(value = "/api/v1/datasets")
 public class NamedDatasetController {
 
     private NamedDatasetService namedDatasetService;
 
 
-    @GetMapping(value = "hello")
-    public Mono<String> hello() {
+    @GetMapping(value = "test")
+    public Flux<MDatasetDto> test() {
 
-        log.info("Hello World !");
-        return Mono.just("Hello");
+        log.info("Hello Test !");
+
+        return Flux.fromStream(Stream.generate(() -> new MDatasetDto(
+                        new DatasetNameDto(UUID.randomUUID().toString()), new SchemaDto(Collections.emptySet()))))
+                .take(10)
+                .log()
+                .delayElements(Duration.ofMillis(300));
     }
 
     @PostMapping(value = "load")
