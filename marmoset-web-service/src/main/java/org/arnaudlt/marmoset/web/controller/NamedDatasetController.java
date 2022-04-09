@@ -38,7 +38,7 @@ public class NamedDatasetController {
                         new DatasetNameDto(UUID.randomUUID().toString()), new SchemaDto(Collections.emptySet()))))
                 .take(10)
                 .log()
-                .delayElements(Duration.ofMillis(300));
+                .delayElements(Duration.ofMillis(100));
     }
 
     @PostMapping(value = "load")

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MDataset, NamedDatasetService } from '../services/named-dataset.service';
 
 @Component({
   selector: 'app-marmoset-explorer',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MarmosetExplorerComponent implements OnInit {
 
-  constructor() {}
+  namedDatasets: MDataset[] = [];
+
+  constructor(private namedDatasetService: NamedDatasetService) {}
 
   ngOnInit(): void {
+    this.test();
   }
 
+  test() {
+
+    this.namedDatasetService.test()
+      .subscribe(mds => this.namedDatasets = mds)
+  }
+  
 }

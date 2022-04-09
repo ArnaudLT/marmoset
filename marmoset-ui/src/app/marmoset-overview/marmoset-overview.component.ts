@@ -13,9 +13,4 @@ export class MarmosetOverviewComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  test() {
-    this.namedDatasetService.test()
-      .subscribe(y => console.log(y))
-  }
-
 }

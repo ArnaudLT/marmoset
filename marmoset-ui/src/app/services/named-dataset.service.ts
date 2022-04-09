@@ -36,8 +36,8 @@ export class NamedDatasetService {
 
   constructor(private http: HttpClient) { }
 
-  test() : Observable<MDataset> {
-    return this.http.get<MDataset>("http://localhost:8080/api/v1/datasets/test", this.httpOptions);
+  test() : Observable<MDataset[]> {
+    return this.http.get<MDataset[]>("http://localhost:8080/api/v1/datasets/test", this.httpOptions);
   }
 
 }

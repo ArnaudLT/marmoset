@@ -1,1 +1,7 @@
 <p>marmoset-explorer works!</p>
+<div>
+    <button type="button" (click)="test()">Test</button>
+    <ul>
+        <li *ngFor="let dataset of namedDatasets">{{dataset.datasetName.name}}</li>
+    </ul>
+</div>
