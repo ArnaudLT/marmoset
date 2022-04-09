@@ -1,5 +1,19 @@
 <p>marmoset-explorer works!</p>
 <div>
+    <form clrForm>
+        <clr-datalist-container>
+          <input clrDatalistInput placeholder="No label" name="Option" />
+          <datalist>
+            <option *ngFor="let dataset of namedDatasets" [value]="dataset.datasetName.name"></option>
+          </datalist>
+        </clr-datalist-container>
+    </form>
+    <clr-tree>
+        <clr-tree-node *ngFor="let dataset of namedDatasets" [clrExpanded]="false">
+            {{dataset.datasetName.name}}
+            <clr-tree-node *ngFor="let field of dataset.schema.fields" >inner {{field.name}}</clr-tree-node>
+        </clr-tree-node>
+      </clr-tree>
     <button type="button" (click)="test()">Test</button>
     <ul>
         <li *ngFor="let dataset of namedDatasets">{{dataset.datasetName.name}}</li>

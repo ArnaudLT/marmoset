@@ -15,6 +15,7 @@ import reactor.core.publisher.Mono;
 
 import java.time.Duration;
 import java.util.Collections;
+import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Stream;
 
@@ -34,11 +35,18 @@ public class NamedDatasetController {
 
         log.info("Hello Test !");
 
-        return Flux.fromStream(Stream.generate(() -> new MDatasetDto(
-                        new DatasetNameDto(UUID.randomUUID().toString()), new SchemaDto(Collections.emptySet()))))
-                .take(10)
-                .log()
-                .delayElements(Duration.ofMillis(100));
+        return Flux.fromStream(Stream.generate(() -> {
+
+            final String dsName = UUID.randomUUID().toString();
+
+            return new MDatasetDto(
+                        new DatasetNameDto(dsName),
+                        new SchemaDto(Set.of(
+                                new FieldDto(dsName.substring(0,3) + "-f1", "string",Collections.emptySet()),
+                                new FieldDto(dsName.substring(0,3) + "-f2", "string",Collections.emptySet()),
+                                new FieldDto(dsName.substring(0,3) + "-f3", "string",Collections.emptySet())))
+                        );})
+        ).take(5);
     }
 
     @PostMapping(value = "load")
