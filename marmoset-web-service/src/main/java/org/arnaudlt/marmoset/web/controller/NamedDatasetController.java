@@ -8,13 +8,12 @@ import org.arnaudlt.marmoset.core.model.MDataset;
 import org.arnaudlt.marmoset.core.model.SqlQueryOutput;
 import org.arnaudlt.marmoset.web.api.*;
 import org.arnaudlt.marmoset.web.utils.Converters;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.time.Duration;
 import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Stream;
@@ -74,10 +73,12 @@ public class NamedDatasetController {
     }
 
     @GetMapping(value = "catalog")
-    public Mono<CatalogDto> catalog() {
+    public Flux<MDatasetDto> catalog() {
 
         log.info("Request catalog");
-        Catalog catalog = namedDatasetService.catalog();
-        return Mono.just(Converters.toDataTransferObject(catalog));
+        Stream<MDatasetDto> datasets = namedDatasetService.catalog()
+                .stream()
+                .map(Converters::toDataTransferObject);
+        return Flux.fromStream(datasets);
     }
 }

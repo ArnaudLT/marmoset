@@ -26,7 +26,7 @@ public class NamedDatasetService {
         log.info("Starting to load {}", datasetImportSettings);
         Dataset<Row> dataset = sparkSession
                 .read()
-                .json("data\\sample.json");
+                .json(datasetImportSettings.getUri()); // "data\\sample.json"
 
         final String temporaryViewName = datasetImportSettings.getRequestedName();
         dataset.createTempView(temporaryViewName);
@@ -49,16 +49,17 @@ public class NamedDatasetService {
         return new SqlQueryOutput(sqlQuery, outputDataset, outputRows);
     }
 
-    public Catalog catalog() {
+    public List<MDataset> catalog() {
 
         log.info("Starting to retrieve catalog");
-        List<DatasetName> datasetNames = sparkSession.catalog()
-                .listTables() // TODO specify the DB to handle multiple users
+        return sparkSession.catalog()
+                .listTables()
                 .collectAsList()
                 .stream()
-                .map(table -> new DatasetName(table.name()))
+                .map(table -> {
+                    Dataset<Row> dataset = sparkSession.sqlContext().sql("SELECT * FROM " + table.name());
+                    return new MDataset(new DatasetName(table.name()), dataset);})
                 .collect(Collectors.toList());
-        return new Catalog(datasetNames);
     }
 
 }
