@@ -3,7 +3,6 @@ package org.arnaudlt.marmoset.web.controller;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.arnaudlt.marmoset.core.NamedDatasetService;
-import org.arnaudlt.marmoset.core.model.Catalog;
 import org.arnaudlt.marmoset.core.model.MDataset;
 import org.arnaudlt.marmoset.core.model.SqlQueryOutput;
 import org.arnaudlt.marmoset.web.api.*;
@@ -12,10 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
-import java.util.UUID;
 import java.util.stream.Stream;
 
 
@@ -28,25 +23,6 @@ public class NamedDatasetController {
 
     private NamedDatasetService namedDatasetService;
 
-
-    @GetMapping(value = "test")
-    public Flux<MDatasetDto> test() {
-
-        log.info("Hello Test !");
-
-        return Flux.fromStream(Stream.generate(() -> {
-
-            final String dsName = UUID.randomUUID().toString();
-
-            return new MDatasetDto(
-                        new DatasetNameDto(dsName),
-                        new SchemaDto(Set.of(
-                                new FieldDto(dsName.substring(0,3) + "-f1", "string",Collections.emptySet()),
-                                new FieldDto(dsName.substring(0,3) + "-f2", "string",Collections.emptySet()),
-                                new FieldDto(dsName.substring(0,3) + "-f3", "string",Collections.emptySet())))
-                        );})
-        ).take(5);
-    }
 
     @PostMapping(value = "load")
     public Mono<MDatasetDto> load(@RequestBody DatasetImportSettingsDto datasetImportSettingsDto) {

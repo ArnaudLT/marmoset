@@ -71,7 +71,7 @@ public class Converters {
             Map<String, String> convertedRow = new LinkedHashMap<>();
             for (StructField field : fields) {
 
-                convertedRow.put(field.name(), row.getAs(field.name()));
+                convertedRow.put(field.name(), row.getAs(field.name()).toString());
             }
             convertedRows.add(convertedRow);
         }

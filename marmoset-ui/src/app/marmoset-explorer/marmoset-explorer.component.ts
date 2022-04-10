@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { DatasetImportSettings, DatasetName, MDataset, NamedDatasetService } from '../services/named-dataset.service';
+import { DatasetImportSettings, DatasetName, MDataset, NamedDatasetService, SqlQuery } from '../services/named-dataset.service';
 
 @Component({
   selector: 'app-marmoset-explorer',
@@ -14,12 +14,6 @@ export class MarmosetExplorerComponent implements OnInit {
   constructor(private namedDatasetService: NamedDatasetService) {}
 
   ngOnInit(): void {}
-
-  test() {
-
-    this.namedDatasetService.test()
-      .subscribe(mds => this.namedDatasets = mds)
-  }
 
   catalog() {
 
@@ -44,6 +38,16 @@ export class MarmosetExplorerComponent implements OnInit {
         next: (mds) => console.log('unload next'),
         error: (err) => console.error("unload error", err),
         complete: () => console.info('unload complete')
+      });
+  }
+
+  runQuery(sqlQuery: SqlQuery) {
+
+    this.namedDatasetService.runQuery(sqlQuery)
+      .subscribe({
+        next: (output) => console.log('runQuery next'),
+        error: (err) => console.error("runQuery error", err),
+        complete: () => console.info('runQuery complete')
       });
   }
   

@@ -1,35 +1,36 @@
-
 <div>
-  
-  <button class="btn btn-outline" (click)="catalog()">Catalog</button>
 
-  <clr-tree>
-    <clr-tree-node *ngFor="let dataset of namedDatasets" [clrExpanded]="false">
-      {{dataset.datasetName.name}}
-      <clr-tree-node *ngFor="let field of dataset.schema.fields" >
-        {{field.name}} - {{field.type}}
-        <clr-tree-node *ngFor="let innerField of field.innerFields" >
-          {{innerField.name}} - {{innerField.type}}
+    <!-- ----------- CATALOG ----------- -->
+    <button class="btn btn-outline" (click)="catalog()">Catalog</button>
+
+    <clr-tree>
+      <clr-tree-node *ngFor="let dataset of namedDatasets" [clrExpanded]="false">
+        {{dataset.datasetName.name}}
+        <clr-tree-node *ngFor="let field of dataset.schema.fields" >
+          {{field.name}} - {{field.type}}
+          <clr-tree-node *ngFor="let innerField of field.innerFields" >
+            {{innerField.name}} - {{innerField.type}}
+          </clr-tree-node>
         </clr-tree-node>
       </clr-tree-node>
-    </clr-tree-node>
-  </clr-tree>
-</div>
+    </clr-tree>
 
-<div>
-  
-  <input clrInput placeholder="Name" #requestedName />
-  <input clrInput placeholder="URI" #uri />
-  <input clrInput placeholder="Base path" #basePath />
-  
-  <button class="btn btn-outline" (click)="load({requestedName: requestedName.value, uri: uri.value, basePath: basePath.value})">Add dataset</button>  
-    
-</div>
+    <!-- ----------- LOAD DATASET ----------- -->
+    <input clrInput placeholder="Name" #loadName />
+    <input clrInput placeholder="URI" #uri />
+    <input clrInput placeholder="Base path" #basePath />
+    <button class="btn btn-outline" (click)="load({requestedName: loadName.value, uri: uri.value, basePath: basePath.value})">Add dataset</button>
 
-<div>
+    <!-- ----------- UNLOAD DATASET ----------- -->
+    <input clrInput placeholder="Name" #unloadName />
+    <button class="btn btn-outline" (click)="unload({name: unloadName.value})">Delete dataset</button>
 
-  <input clrInput placeholder="Name" #deleteName />
+    <!-- ----------- RUN QUERY ----------- -->
+    <clr-textarea-container>
+      <label>Description</label>
+      <textarea clrTextarea required #query></textarea>
+    </clr-textarea-container>
+    <button class="btn btn-outline" (click)="runQuery({query: query.value})">Run query</button>
 
-  <button class="btn btn-outline" (click)="unload({name: deleteName.value})">Delete dataset</button>
 
 </div>
