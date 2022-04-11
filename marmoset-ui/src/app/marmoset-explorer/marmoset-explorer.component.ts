@@ -13,7 +13,10 @@ export class MarmosetExplorerComponent implements OnInit {
 
   constructor(private namedDatasetService: NamedDatasetService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+
+    this.catalog();
+  }
 
   catalog() {
 
@@ -25,7 +28,9 @@ export class MarmosetExplorerComponent implements OnInit {
 
     this.namedDatasetService.load(datasetImportSettings)
       .subscribe({
-        next: (mds) => console.log('load next'),
+        next: (mds) => {
+          console.log('load next'); 
+          this.namedDatasets.push(mds);},
         error: (err) => console.error("load error", err),
         complete: () => console.info('load complete')
       });
@@ -35,7 +40,9 @@ export class MarmosetExplorerComponent implements OnInit {
 
     this.namedDatasetService.unload(datasetName)
       .subscribe({
-        next: (mds) => console.log('unload next'),
+        next: (mds) => {
+          console.log('unload next');
+          this.removeDataset(datasetName.name);},
         error: (err) => console.error("unload error", err),
         complete: () => console.info('unload complete')
       });
@@ -49,6 +56,16 @@ export class MarmosetExplorerComponent implements OnInit {
         error: (err) => console.error("runQuery error", err),
         complete: () => console.info('runQuery complete')
       });
+  }
+
+  private removeDataset(datasetName: string) {
+    
+    var datasetIndex;
+    for (var i=0; i<this.namedDatasets.length; i++) {
+      if (this.namedDatasets[i].datasetName.name === datasetName) {
+        this.namedDatasets.splice(i, 1);
+      }
+    }
   }
   
 }

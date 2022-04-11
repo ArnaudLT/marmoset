@@ -10,14 +10,15 @@
           {{field.name}} - {{field.type}}
           <clr-tree-node *ngFor="let innerField of field.innerFields" >
             {{innerField.name}} - {{innerField.type}}
+            <clr-tree-node *ngFor="let innerInnerField of innerField.innerFields" >{{innerInnerField.name}}</clr-tree-node>
           </clr-tree-node>
         </clr-tree-node>
       </clr-tree-node>
     </clr-tree>
 
     <!-- ----------- LOAD DATASET ----------- -->
-    <input clrInput placeholder="Name" #loadName />
-    <input clrInput placeholder="URI" #uri />
+    <input clrInput placeholder="Name" value="sample_json" #loadName />
+    <input clrInput placeholder="URI" value="data\sample.json" #uri />
     <input clrInput placeholder="Base path" #basePath />
     <button class="btn btn-outline" (click)="load({requestedName: loadName.value, uri: uri.value, basePath: basePath.value})">Add dataset</button>
 
