@@ -12,6 +12,8 @@ public class SqlQueryOutputDto {
 
     private SqlQueryDto sqlQuery;
 
+    private SchemaDto schema;
+
     private OutputRowsDto outputRows;
 
 }

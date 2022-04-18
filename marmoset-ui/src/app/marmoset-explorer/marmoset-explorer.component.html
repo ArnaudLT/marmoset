@@ -29,9 +29,21 @@
     <!-- ----------- RUN QUERY ----------- -->
     <clr-textarea-container>
       <label>Description</label>
-      <textarea clrTextarea required #query></textarea>
+      <textarea clrTextarea required #query>select * from sample_json</textarea>
     </clr-textarea-container>
     <button class="btn btn-outline" (click)="runQuery({query: query.value})">Run query</button>
 
+    <table class="table table-compact">
+      <thead>
+        <tr>
+          <th *ngFor="let field of sqlQueryOutput.schema.fields" >{{field.name}}</th>          
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of sqlQueryOutput.outputRows.rows">
+          <td *ngFor="let cell of row | keyvalue">{{cell.value}}</td>
+        </tr>
+      </tbody>
+    </table>
 
 </div>

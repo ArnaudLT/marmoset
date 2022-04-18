@@ -21,16 +21,26 @@ export interface DatasetName {
   name: string;
 }
 
-export interface Schema {
+export class Schema {
 
   fields: Set<Field>;
+
+  constructor() {
+    this.fields = new Set<Field>();
+  }
 }
 
-export interface Field {
+export class Field {
 
   name: string;
   type: string;
   innerFields: Set<Field>;
+
+  constructor() {
+    this.name = "";
+    this.type = "";
+    this.innerFields = new Set<Field>();
+  }
 }
 
 export interface DatasetImportSettings {
@@ -38,22 +48,39 @@ export interface DatasetImportSettings {
   uri: string;
   basePath: string;
   requestedName: string
+
 }
 
-export interface SqlQueryOutput {
+export class SqlQueryOutput {
 
   sqlQuery: SqlQuery;
+  schema: Schema;
   outputRows: OutputRows;
+
+  constructor() {
+    this.sqlQuery = new SqlQuery();
+    this.schema = new Schema();
+    this.outputRows = new OutputRows();
+  }
+  
 }
 
-export interface OutputRows {
+export class OutputRows {
 
-  rows: Map<string, string>[];
+  rows: Array<Map<string, string>>;
+
+  constructor() {
+    this.rows = Array<Map<string,string>>();
+  }
 }
 
-export interface SqlQuery {
+export class SqlQuery {
 
   query: string;
+
+  constructor() {
+    this.query = "";
+  }
 }
 
 

@@ -42,6 +42,7 @@ public class Converters {
 
         return new SqlQueryOutputDto(
                 toDataTransferObject(sqlQueryOutput.getSqlQuery()),
+                new SchemaDto(schemaToFields(sqlQueryOutput.getOutputDataset().schema())),
                 toOutputRowsDto(sqlQueryOutput)
         );
     }
