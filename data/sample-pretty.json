@@ -1,39 +1,248 @@
+[{
+  "_id": 83419,
+  "contact": {
+    "GooglePlaces": null,
+    "Foursquare": "https://foursquare.com/v/pe%C3%B1a-festayre-paris-%C3%AEledefrance/4adcda06f964a520fd3221e3"
+  },
+  "name": "Peña Festayre",
+  "location": {
+    "city": "Paris",
+    "coord": {
+      "coordinates": [
+        2.3860357589657,
+        48.896621743257
+      ],
+      "type": "Point"
+    },
+    "address": "80 Boulevard Macdonald"
+  },
+  "category": "restaurant",
+  "description": "",
+  "services": [],
+  "reviews": [
+    {
+      "wordsCount": 6,
+      "rating": 0,
+      "language": "ca",
+      "details": "http://tour-pedia.org/api/getReviewDetails?id=52a74a85ae9eef5a50671b08",
+      "source": "Foursquare",
+      "text": "Entree + Plat (grillade a volonte) + dessert 19€",
+      "time": "2011-01-22",
+      "polarity": 0
+    },
+    {
+      "wordsCount": 20,
+      "rating": 0,
+      "language": "fr",
+      "details": "http://tour-pedia.org/api/getReviewDetails?id=52a74a85ae9eef5a50671b09",
+      "source": "Foursquare",
+      "text": "Tous les mercredis jusqu'en juin : Soirées Salsa... concert live puis dj ; 12 femmes, 12 musiciennes, venues des quatre coins du monde",
+      "time": "2012-01-11",
+      "polarity": 5
+    },
+    {
+      "wordsCount": 8,
+      "rating": 0,
+      "language": "fr",
+      "details": "http://tour-pedia.org/api/getReviewDetails?id=52a74a85ae9eef5a50671b0a",
+      "source": "Foursquare",
+      "text": "les soirées salsa sont le jeudi maintenant.",
+      "time": "2012-05-05",
+      "polarity": 5
+    }
+  ],
+  "likes": {},
+  "nbReviews": 3
+},
 {
-  "name": "Helmut",
-  "age": 46,
-  "owner": true,
-  "child-names": [
-    "Bogart",
-    "Fernand",
-    "Fiona"
-  ],
-  "books": [
+  "_id": 83622,
+  "contact": {
+    "website": "http://www.zebrasquare.com",
+    "GooglePlaces": null,
+    "Foursquare": "https://foursquare.com/v/zebra-square/4adcda11f964a520103621e3"
+  },
+  "name": "Zebra Square",
+  "location": {
+    "city": "Paris",
+    "coord": {
+      "coordinates": [
+        2.277925,
+        48.851513
+      ],
+      "type": "Point"
+    },
+    "address": "3 Place Clément Ader"
+  },
+  "category": "restaurant",
+  "description": "",
+  "services": [],
+  "reviews": [
     {
-      "title": "Dracula",
-      "author": "BramStocker",
-      "year": 1897
+      "wordsCount": 7,
+      "rating": 0,
+      "language": "en",
+      "details": "http://tour-pedia.org/api/getReviewDetails?id=52a74a93ae9eef5a50672d78",
+      "source": "Foursquare",
+      "text": "The best place to eat fusion food !!!",
+      "time": "2009-12-17",
+      "polarity": 10
     },
     {
-      "title": "Germinal",
-      "author": "EmileZola",
-      "year": 1885
+      "wordsCount": 2,
+      "rating": 0,
+      "language": "en",
+      "details": "http://tour-pedia.org/api/getReviewDetails?id=52a74a93ae9eef5a50672d79",
+      "source": "Foursquare",
+      "text": "Outrageously bad.",
+      "time": "2010-09-07",
+      "polarity": 0
     },
     {
-      "title": "TheMetamorphosis",
-      "author": "FranzKafka",
-      "year": 1915
+      "wordsCount": 17,
+      "rating": 0,
+      "language": "en",
+      "details": "http://tour-pedia.org/api/getReviewDetails?id=52a74a93ae9eef5a50672d7a",
+      "source": "Foursquare",
+      "text": "Nice lounge for a great date ! The dim lighting makes you handsome ! coktails from 10 to 20 euros. Fancy.",
+      "time": "2011-02-02",
+      "polarity": 10
+    },
+    {
+      "wordsCount": 7,
+      "rating": 0,
+      "language": "fr",
+      "details": "http://tour-pedia.org/api/getReviewDetails?id=52a74a93ae9eef5a50672d7b",
+      "source": "Foursquare",
+      "text": "La tomate mozza vaut le détour",
+      "time": "2011-08-26",
+      "polarity": 5
+    },
+    {
+      "wordsCount": 37,
+      "rating": 0,
+      "language": "en",
+      "details": "http://tour-pedia.org/api/getReviewDetails?id=52a74a93ae9eef5a50672d7c",
+      "source": "Foursquare",
+      "text": "Stunning high end hotel&restaurant, perfect for brunch or drinks! The food is really worth it plus there are always famous faces! Great gallery too where I did an expo in Jan plus one coming in April!",
+      "time": "2012-02-03",
+      "polarity": 9
+    },
+    {
+      "wordsCount": 29,
+      "rating": 0,
+      "language": "en",
+      "details": "http://tour-pedia.org/api/getReviewDetails?id=52a74a93ae9eef5a50672d7d",
+      "source": "Foursquare",
+      "text": "The Radio-France hangout where you can run into french journalists talking media shop around a lunch of «appetizers». Wonderful small gastronomic plates by the talented Thierry Burlot. 50-60 EUR",
+      "time": "2012-07-04",
+      "polarity": 5
+    },
+    {
+      "wordsCount": 8,
+      "rating": 0,
+      "language": "fr",
+      "details": "http://tour-pedia.org/api/getReviewDetails?id=52a74a93ae9eef5a50672d7e",
+      "source": "Foursquare",
+      "text": "Ne surtout pas manquer le brunch du dimanche !",
+      "time": "2012-08-01",
+      "polarity": 5
+    },
+    {
+      "wordsCount": 7,
+      "rating": 0,
+      "language": "fr",
+      "details": "http://tour-pedia.org/api/getReviewDetails?id=52a74a93ae9eef5a50672d7f",
+      "source": "Foursquare",
+      "text": "La nouvelle carte de printemps est top",
+      "time": "2013-03-19",
+      "polarity": 10
+    },
+    {
+      "wordsCount": 14,
+      "rating": 0,
+      "language": "fr",
+      "details": "http://tour-pedia.org/api/getReviewDetails?id=52a74a93ae9eef5a50672d80",
+      "source": "Foursquare",
+      "text": "Sous la pluie, la terrasse donne de faux airs de saison estivale pluvieuse ;-)",
+      "time": "2013-04-10",
+      "polarity": 0
     }
   ],
-  "purchases": {
-    "M2JmZGY2": {
-      "article": "#028764552",
-      "price-in-eur": 38.99,
-      "online": false
+  "likes": {},
+  "nbReviews": 9
+},
+{
+  "_id": 83659,
+  "contact": {
+    "GooglePlaces": null,
+    "Foursquare": "https://foursquare.com/v/paddock-le/4adcda12f964a520843621e3"
+  },
+  "name": "Paddock (Le)",
+  "location": {
+    "city": "Paris",
+    "coord": {
+      "coordinates": [
+        2.4614904787744,
+        48.822740841108
+      ],
+      "type": "Point"
     },
-    "YjM2YmFj": {
-      "article": "#077832795",
-      "price-in-eur": 457.20,
-      "online": true
-    }
-  }
-}
+    "address": "2 Route de la Ferme"
+  },
+  "category": "restaurant",
+  "description": "",
+  "services": [],
+  "reviews": [],
+  "likes": {},
+  "nbReviews": 0
+},
+{
+  "_id": 83680,
+  "contact": {
+    "GooglePlaces": null,
+    "Foursquare": "https://foursquare.com/v/la-chesnaie-du-roy/4adcda14f964a520283721e3"
+  },
+  "name": "La Chesnaie du Roy",
+  "location": {
+    "city": "Paris",
+    "coord": {
+      "coordinates": [
+        2.4408855164403,
+        48.837907283364
+      ],
+      "type": "Point"
+    },
+    "address": "Bois De Vincennes"
+  },
+  "category": "restaurant",
+  "description": "",
+  "services": [],
+  "reviews": [],
+  "likes": {},
+  "nbReviews": 0
+},
+{
+  "_id": 83766,
+  "contact": {
+    "GooglePlaces": null,
+    "Foursquare": "https://foursquare.com/v/relais-du-bois-de-boulogne/4adcda22f964a520393a21e3"
+  },
+  "name": "Relais du Bois de Boulogne",
+  "location": {
+    "city": "Paris",
+    "coord": {
+      "coordinates": [
+        2.233303,
+        48.866699
+      ],
+      "type": "Point"
+    },
+    "address": "Route de Suresnes"
+  },
+  "category": "restaurant",
+  "description": "",
+  "services": [],
+  "reviews": [],
+  "likes": {},
+  "nbReviews": 0
+}]

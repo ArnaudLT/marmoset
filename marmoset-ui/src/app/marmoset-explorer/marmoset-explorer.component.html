@@ -4,7 +4,7 @@
     <button class="btn btn-outline" (click)="catalog()">Catalog</button>
 
     <clr-tree>
-      <clr-tree-node *ngFor="let dataset of namedDatasets" [clrExpanded]="false">
+      <clr-tree-node *ngFor="let dataset of namedDatasetService.namedDatasets" [clrExpanded]="false">
         {{dataset.datasetName.name}}
         <clr-tree-node *ngFor="let field of dataset.schema.fields" >
           {{field.name}} - {{field.type}}
@@ -17,33 +17,13 @@
     </clr-tree>
 
     <!-- ----------- LOAD DATASET ----------- -->
-    <input clrInput placeholder="Name" value="sample_json" #loadName />
-    <input clrInput placeholder="URI" value="data\sample.json" #uri />
+    <input clrInput placeholder="Name" value="sample_2_json" #loadName />
+    <input clrInput placeholder="URI" value="data\sample_2.json" #uri />
     <input clrInput placeholder="Base path" #basePath />
     <button class="btn btn-outline" (click)="load({requestedName: loadName.value, uri: uri.value, basePath: basePath.value})">Add dataset</button>
 
     <!-- ----------- UNLOAD DATASET ----------- -->
     <input clrInput placeholder="Name" #unloadName />
     <button class="btn btn-outline" (click)="unload({name: unloadName.value})">Delete dataset</button>
-
-    <!-- ----------- RUN QUERY ----------- -->
-    <clr-textarea-container>
-      <label>Description</label>
-      <textarea clrTextarea required #query>select * from sample_json</textarea>
-    </clr-textarea-container>
-    <button class="btn btn-outline" (click)="runQuery({query: query.value})">Run query</button>
-
-    <table class="table table-compact">
-      <thead>
-        <tr>
-          <th *ngFor="let field of sqlQueryOutput.schema.fields" >{{field.name}}</th>          
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let row of sqlQueryOutput.outputRows.rows">
-          <td *ngFor="let cell of row | keyvalue">{{cell.value}}</td>
-        </tr>
-      </tbody>
-    </table>
 
 </div>

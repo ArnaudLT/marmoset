@@ -1,1 +1,18 @@
-<p>marmoset-overview works!</p>
+<div>
+    <p>marmoset-overview works!</p>
+
+    <!-- ----------- OVERVIEW ----------- -->
+    <table class="table table-compact">
+        <thead>
+            <tr>
+                <th *ngFor="let field of namedDatasetService.sqlQueryOutput.schema.fields">{{field.name}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let row of namedDatasetService.sqlQueryOutput.outputRows.rows">
+                <td *ngFor="let cell of row | keyvalue">{{cell.value}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>

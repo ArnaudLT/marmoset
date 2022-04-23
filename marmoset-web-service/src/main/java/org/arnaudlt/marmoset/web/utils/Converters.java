@@ -72,7 +72,7 @@ public class Converters {
             Map<String, String> convertedRow = new LinkedHashMap<>();
             for (StructField field : fields) {
 
-                convertedRow.put(field.name(), row.getAs(field.name()).toString());
+                convertedRow.put(field.name(), toString(row.getAs(field.name())));
             }
             convertedRows.add(convertedRow);
         }
@@ -120,6 +120,15 @@ public class Converters {
                 addInnerFields(parentFieldDto, arrayType.elementType());
                 break;
             default:
+        }
+    }
+
+    private static <T> String toString(T in) {
+
+        if (in == null) {
+            return "";
+        } else {
+            return in.toString();
         }
     }
 

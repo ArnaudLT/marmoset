@@ -35,3 +35,4 @@ build/
 ### Others ###
 *.log
 metastore_db/
+data/

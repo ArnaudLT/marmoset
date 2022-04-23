@@ -44,7 +44,7 @@ public class NamedDatasetService {
 
         log.info("Starting to run query {}", sqlQuery);
         Dataset<Row> outputDataset = sparkSession.sqlContext().sql(sqlQuery.getQuery());
-        OutputRows outputRows = new OutputRows(outputDataset.takeAsList(10));
+        OutputRows outputRows = new OutputRows(outputDataset.takeAsList(20));
 
         return new SqlQueryOutput(sqlQuery, outputDataset, outputRows);
     }

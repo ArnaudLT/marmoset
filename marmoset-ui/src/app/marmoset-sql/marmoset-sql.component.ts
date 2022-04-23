@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NamedDatasetService, SqlQuery } from '../services/named-dataset.service';
 
 @Component({
   selector: 'app-marmoset-sql',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MarmosetSqlComponent implements OnInit {
 
-  constructor() { }
+  constructor(private namedDatasetService: NamedDatasetService) { }
 
   ngOnInit(): void {
+  }
+
+  runQuery(sqlQuery: SqlQuery) {
+
+    this.namedDatasetService.runQuery(sqlQuery);      
   }
 
 }

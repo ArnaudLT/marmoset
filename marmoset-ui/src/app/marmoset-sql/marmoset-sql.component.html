@@ -1,1 +1,11 @@
-<p>marmoset-sql works!</p>
+<div>
+    <p>marmoset-sql works!</p>
+
+    <!-- ----------- RUN QUERY ----------- -->
+    <clr-textarea-container>
+        <textarea clrTextarea required #query>select * from sample_2_json</textarea>
+    </clr-textarea-container>
+
+    <button class="btn btn-outline" (click)="runQuery({query: query.value})">Run query</button>
+
+</div>
